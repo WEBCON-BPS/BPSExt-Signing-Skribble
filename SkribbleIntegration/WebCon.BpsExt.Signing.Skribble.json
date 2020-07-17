@@ -1,0 +1,58 @@
+[
+  {
+    "Guid": "B462CC40-4D8A-4EBF-84EF-1F2E42AC50FA",
+    "Name": "SendEnvelopeToEmbededSign",
+    "Description": "Use this action to send an e-mail as a reminder to sign the document to selected people.",
+    "Assembly": "WebCon.BpsExt.Signing.Skribble",
+    "Class": "WebCon.BpsExt.Signing.Skribble.CustomActions.SendAndSignEnvelope.SendEnvelopeToEmbededSign",
+    "Type": "CustomAction"
+  },
+  {
+    "Guid": "a62dcbc9-a653-48b8-817f-5a41d2bd8e79",
+    "Name": "SendReminder",
+    "Description": "Use this action to send an e-mail as a reminder to sign the document to selected people.",
+    "Assembly": "WebCon.BpsExt.Signing.Skribble",
+    "Class": "WebCon.BpsExt.Signing.Skribble.CustomActions.Reminder.SendReminderAction",
+    "Type": "CustomAction"
+  },
+  {
+    "Guid": "35a38d16-70f9-4cd8-ba89-797f6d85af38",
+    "Name": "CheckAllDocumentsStatus",
+    "Description": "Use this action to check the status of all documents sent to be signed and move all signed documents along the selected path.",
+    "Assembly": "WebCon.BpsExt.Signing.Skribble",
+    "Class": "WebCon.BpsExt.Signing.Skribble.CustomActions.CheckAll.CheckAllDocStatusAction",
+    "Type": "CustomAction"
+  },
+  {
+    "Guid": "257772c3-6da4-4df6-a4ef-c97b6c7835bc",
+    "Name": "DeleteEnvelope",
+    "Description": "This action allows you to cancel signing the document.",
+    "Assembly": "WebCon.BpsExt.Signing.Skribble",
+    "Class": "WebCon.BpsExt.Signing.Skribble.CustomActions.Delete.DeleteRequestAction",
+    "Type": "CustomAction"
+  },
+  {
+    "Guid": "2e0c1bd1-8c8e-4040-aefd-6fbc6b8897ae",
+    "Name": "DownloadDocument",
+    "Description": "The action downloads related signed document.",
+    "Assembly": "WebCon.BpsExt.Signing.Skribble",
+    "Class": "WebCon.BpsExt.Signing.Skribble.CustomActions.Download.DownloadSignedDocAction",
+    "Type": "CustomAction"
+  },
+  {
+    "Guid": "37a4d8ff-66c1-4e55-9fe1-fa53890afd0b",
+    "Name": "CheckDocumentStatus",
+    "Description": "This action checks the current status of the document sent to be signed.",
+    "Assembly": "WebCon.BpsExt.Signing.Skribble",
+    "Class": "WebCon.BpsExt.Signing.Skribble.CustomActions.Check.CheckSigStatusAction",
+    "Type": "CustomAction"
+  },
+  {
+    "Guid": "e05e60e3-4414-443b-9f58-5b950ce03465",
+    "Name": "SendEnvelope",
+    "Description": "Action sends selected documents to be signed in Scribble",
+    "Assembly": "WebCon.BpsExt.Signing.Skribble",
+    "Class": "WebCon.BpsExt.Signing.Skribble.CustomActions.Send.SendEnvelopeAction",
+    "Type": "CustomAction"
+  }
+]
