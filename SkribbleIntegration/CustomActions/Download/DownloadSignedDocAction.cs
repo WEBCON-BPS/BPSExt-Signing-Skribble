@@ -22,7 +22,7 @@ namespace WebCon.BpsExt.Signing.Skribble.CustomActions.Download
                 {
                     var docGuid = args.Context.CurrentDocument.GetFieldValue(Configuration.GuidIdFielId).ToString();
                     var response = new SkribbleHelper(log, Configuration.ApiConfig).GetDocumentContent(docGuid);
-                    SaveAtt(args.Context.CurrentDocument, response);
+                    SaveAtt(args.Context, response);
                 }
                 else
                 {
@@ -43,14 +43,14 @@ namespace WebCon.BpsExt.Signing.Skribble.CustomActions.Download
             }
         }
 
-        private void SaveAtt(CurrentDocumentData currentDocument, byte[] newAttContent)
+        private void SaveAtt(ActionContextInfo context, byte[] newAttContent)
         {
             if (newAttContent == null)
                 throw new Exception("API returned empty document content!");
 
-            int sourceAttData = Convert.ToInt32(currentDocument.GetFieldValue(Configuration.AttConfig.AttTechnicalFieldID));            
+            int sourceAttData = Convert.ToInt32(context.CurrentDocument.GetFieldValue(Configuration.AttConfig.AttTechnicalFieldID));            
             
-            var sourceAtt = currentDocument.Attachments.GetByID(sourceAttData);         
+            var sourceAtt = context.CurrentDocument.Attachments.GetByID(sourceAttData);         
             sourceAtt.Content = newAttContent;
             sourceAtt.FileName = $"{Path.GetFileNameWithoutExtension(sourceAtt.FileName)}{Configuration.AttConfig.AttSufix}{sourceAtt.FileExtension}";
 
@@ -59,7 +59,7 @@ namespace WebCon.BpsExt.Signing.Skribble.CustomActions.Download
                 sourceAtt.FileGroup = new WorkFlow.SDK.Documents.Model.Attachments.AttachmentsGroup(Configuration.AttConfig.SaveCategory, null);
             }
 
-            DocumentAttachmentsManager.UpdateAttachment(new WorkFlow.SDK.Documents.Model.Attachments.UpdateAttachmentParams()
+            new DocumentAttachmentsManager(context).UpdateAttachment(new WorkFlow.SDK.Documents.Model.Attachments.UpdateAttachmentParams()
             {
                 Attachment = sourceAtt
             });

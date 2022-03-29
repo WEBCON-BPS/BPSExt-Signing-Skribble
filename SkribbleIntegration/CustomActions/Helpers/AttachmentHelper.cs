@@ -14,11 +14,12 @@ namespace WebCon.BpsExt.Signing.Skribble.CustomActions.Helpers
     {
         internal static AttachmentData GetAttachment(ActionContextInfo context, InputAttConfig attConfig, StringBuilder log)
         {
+            var manager = new DocumentAttachmentsManager(context);
             if (attConfig.InputAttType == InputType.Category)
             {
                 log.AppendLine("Downloading attachments by category");
 
-                var allAttachments = DocumentAttachmentsManager.GetAttachments(new GetAttachmentsParams()
+                var allAttachments = manager.GetAttachments(new GetAttachmentsParams()
                 {
                     DocumentId = context.CurrentDocument.ID,
                     IncludeContent = true
@@ -49,7 +50,7 @@ namespace WebCon.BpsExt.Signing.Skribble.CustomActions.Helpers
                 if (attId == null)
                     throw new Exception("Sql query not returning result");
 
-                return DocumentAttachmentsManager.GetAttachment(Convert.ToInt32(attId));
+                return manager.GetAttachment(Convert.ToInt32(attId));
             }
         }
     }

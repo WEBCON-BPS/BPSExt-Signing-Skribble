@@ -33,7 +33,7 @@ namespace WebCon.BpsExt.Signing.Skribble.CustomActions.CheckAll
                                $"from WFElements where WFD_STPID = {Configuration.Workflow.StepId}";
 
                 var dt = SqlExecutionHelper.GetDataTableForSqlCommandOutsideTransaction(sqlQuery);
-                CheckSignStatus(dt, response, sw);
+                CheckSignStatus(dt, response, sw, args.Context);
             }
             catch (Exception e)
             {
@@ -48,7 +48,7 @@ namespace WebCon.BpsExt.Signing.Skribble.CustomActions.CheckAll
             }
         }
 
-        private void CheckSignStatus(DataTable dt, List<Models.Documents> response, Stopwatch sw)
+        private void CheckSignStatus(DataTable dt, List<Models.Documents> response, Stopwatch sw, ActionWithoutDocumentContext context)
         {
             var time = TimeSpan.FromSeconds(Configuration.Workflow.ExecutionTime);
 
@@ -66,22 +66,23 @@ namespace WebCon.BpsExt.Signing.Skribble.CustomActions.CheckAll
                     switch (signStatus)
                     {
                         case Models.Statuses.Signed:
-                            MoveDocument(wfdId, Configuration.Workflow.SuccessPathId);
+                            MoveDocument(wfdId, Configuration.Workflow.SuccessPathId, context);
                             break;
                         case Models.Statuses.Open:
                             break;
                         default:
-                            MoveDocument(wfdId, Configuration.Workflow.ErrorPathId);
+                            MoveDocument(wfdId, Configuration.Workflow.ErrorPathId, context);
                             break;
                     }
                 }
             }
         }
 
-        private void MoveDocument(int wfdId, int pathId)
+        private void MoveDocument(int wfdId, int pathId, ActionWithoutDocumentContext context)
         {
-            var document = DocumentsManager.GetDocumentByID(wfdId, true);
-            DocumentsManager.MoveDocumentToNextStep(new MoveDocumentToNextStepParams(document, pathId)
+            var manager = new DocumentsManager(context);
+            var document = manager.GetDocumentByID(wfdId, true);
+            manager.MoveDocumentToNextStep(new MoveDocumentToNextStepParams(document, pathId)
             {
                 ForceCheckout = true,
                 SkipPermissionsCheck = true

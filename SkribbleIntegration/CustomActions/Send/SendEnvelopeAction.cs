@@ -7,7 +7,7 @@ using WebCon.BpsExt.Signing.Skribble.CustomActions.Models;
 using WebCon.BpsExt.Signing.Skribble.CustomActions.Models.Configuration;
 using WebCon.WorkFlow.SDK.ActionPlugins;
 using WebCon.WorkFlow.SDK.ActionPlugins.Model;
-using WebCon.WorkFlow.SDK.Documents.Model.ItemsLists;
+using WebCon.WorkFlow.SDK.Documents.Model.ItemLists;
 using WebCon.WorkFlow.SDK.Tools.Other;
 
 namespace WebCon.BpsExt.Signing.Skribble.CustomActions.Send
