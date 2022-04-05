@@ -5,7 +5,7 @@ using WebCon.WorkFlow.SDK.ActionPlugins.Model;
 using WebCon.BpsExt.Signing.Skribble.CustomActions.Helpers;
 using WebCon.BpsExt.Signing.Skribble.CustomActions.Models;
 using System.Collections.Generic;
-using WebCon.WorkFlow.SDK.Documents.Model.ItemsLists;
+using WebCon.WorkFlow.SDK.Documents.Model.ItemLists;
 using WebCon.WorkFlow.SDK.Tools.Other;
 using System.Linq;
 
